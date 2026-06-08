@@ -1,40 +1,29 @@
-import {test,expect,Locator} from"@playwright/test"
+import {test, expect, Locator} from "@playwright/test"
 
 
-test("demo test", async({page})=>{
-
-//getByAltText
-await page.goto("file:///D:/Automation_Playwright_learning/Playwright/tests/app.html");
-const logo:Locator = page.getByAltText("logo image")  //getByAltText
-await expect(logo).toBeVisible();
-
-const text:Locator = page.getByText("This paragraph contains some ");  //getByText
-await expect(text).toBeVisible();  
-
-await page.getByRole('button',{name:"Primary Action"}).click();
-// await page.getByRole('link',{name:"Home"}).click();
-
-await page.getByLabel("username").fill("joyson dsouza");
-await page.getByLabel("Email Address:").fill("joysondsouza@gmail.com");
-await page.getByLabel("Your Age:").fill("27");
-await page.getByLabel(" Standard").click();
+test("demo locator TITLE", async({page})=>{
+await page.goto("https://www.saucedemo.com/");
+const title:string = await page.title();
+console.log(title);
+await expect(page).toHaveTitle("Swag Labs");
+await expect(page.getByText("Swag Labs")).toBeVisible();
 
 
-await page.getByPlaceholder("Enter your full name").fill("joyson dsouza")
-await page.getByPlaceholder("Phone number (xxx-xxx-xxxx)").fill("joyson dsouza")
-await page.getByPlaceholder("Type your message here...").fill("joyson dsouza")
-await page.getByPlaceholder("Search products...").fill("joyson dsouza")
+await page.getByPlaceholder("Username").fill("standard_user");
+await page.getByPlaceholder("Password").fill("secret_sauce");
 
-await page.getByRole("button",{name:'Search'}).click();
+await page.getByTestId("login-button").click();
 
-await expect(page.getByTitle("Home page link")).toHaveText("Home");
-await expect(page.getByText("This text has a tooltip")).toBeVisible();
+await expect(page.getByAltText("Sauce Labs Backpack")).toBeVisible();
+await expect(page.getByText(/29.99/)).toBeVisible();
+
+await page.getByTestId("add-to-cart-sauce-labs-backpack").click();
+await page.getByTestId("shopping-cart-link").click();
+await page.getByTestId("shopping-cart-link").click();
 
 
-await expect(page.getByTestId("profile-email")).toHaveText("john.doe@example.com");
-await expect(page.getByTestId("profile-name")).toHaveText("John Doe");
-// await expect(page.getByTestId("product-price")).toHaveText("$19.99");
-//await page.getByTestId("edit-profile-btn-email").click();
-
+await page.getByText
 
 })
+
+
