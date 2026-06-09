@@ -36,7 +36,7 @@ test("first test", async({page})=>{
 
     await expect(page.getByTestId("login-button")).toBeVisible();
 
-    //^  starts with
+    //^  starts with.
     //$  ends with
     //*  contains
 })
