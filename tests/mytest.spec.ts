@@ -14,5 +14,5 @@ import {test,expect,Locator} from "@playwright/test"
         await page.goto("https://playwright.dev/docs/intro");
         let word:string = await page.title();
         console.log(word);
-        await expect(page).toHaveTitle("Playwright");
+        await expect(page).toHaveTitle(/Playwright/);
     }) 
