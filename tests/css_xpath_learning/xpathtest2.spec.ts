@@ -31,7 +31,6 @@ test("text 2",async({page})=>{
 
 
     await page.goto("https://www.w3schools.com/html/html_tables.asp");
-
     await expect(page.locator("//th[position()=3]")).toHaveText("Country");
 
 
