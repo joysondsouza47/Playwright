@@ -1,5 +1,7 @@
 https://demowebshop.tricentis.com/
 
+https://testpages.eviltester.com/styled/basic-web-page-test.html
+
 https://www.saucedemo.com/
 
 https://the-internet.herokuapp.com/

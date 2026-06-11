@@ -1,30 +1,38 @@
-import{test,expect,Locator} from "@playwright/test"
-import { compressDeflate } from "node:zlib/iter";
+import {test,expect, Locator} from"@playwright/test"
 
 
-test("css test 2", async({page})=>{
+
+test("test1", async({page})=>{
 
 
-await page.goto("https://www.saucedemo.com/")
-
-await page.locator("//input[@placeholder='Username']").fill("standard_user");
-await page.locator("//input[@data-test='password']").fill("secret_sauce");                                                   // relative xpath starts with //tag[@attribute]
-await page.locator("//html/body/div/div/div[2]/div[1]/div/div/form/input[@type='submit']").click();                         // absolute xpath starts with // and between tag we use /
-
-await page.locator("//button[@id='add-to-cart-sauce-labs-backpack' and @name='add-to-cart-sauce-labs-backpack']").click();   // xpath with and operator
-await page.locator("//button[@id='remove-sauce-labs-backpack' or @name='add-to-cart-sauce-labs-backpack']").click();         // Xpath with or operator
+await page.goto("https://testpages.eviltester.com/styled/basic-web-page-test.html");
 
 
-await page.locator("//button[@id='add-to-cart-sauce-labs-bike-light'][@name='add-to-cart-sauce-labs-bike-light']").click();  //multiple attributes
+await expect(page.getByRole('heading', {name: "Basic Web Page"})).toBeVisible();
 
-await page.locator("//button[contains(@id,'sauce-labs-bike')]").click();   //contain() function
+await expect(page.locator("//p[contains(text(),'Very simple')]")).toBeVisible();
+await page.locator("//button[text()='Click Me']").click();
 
-await page.locator("//button[starts-with(@id,'add-to-cart-sauce-labs-bolt')]").click();   //starts-with function
+await expect(page.locator("//p[@id='click-message']")).toHaveText("You clicked the button!");
+
+const pages:Locator = page.locator("//span[text()='Pages']");
+
+await expect(pages).toHaveCount(2);
 
 
-// yet to complete
-// text()
-// last()
-// position()
+await page.locator("//div[@class='taxonomy taxonomy-terms-article taxo-tags']//li[position()=2]").click();
 
-})  
+//normalize-space
+
+
+})
+
+test("text 2",async({page})=>{
+
+
+    await page.goto("https://www.w3schools.com/html/html_tables.asp");
+
+    await expect(page.locator("//th[position()=3]")).toHaveText("Country");
+
+
+})
