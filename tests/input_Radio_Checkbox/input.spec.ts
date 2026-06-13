@@ -1,4 +1,5 @@
 import {test, expect, Locator} from "@playwright/test"
+import { captureRejectionSymbol } from "node:events";
 
 
 
@@ -30,9 +31,9 @@ test("input test", async ({page})=>{
 
 })  //.only runs only the mentioned test
 
-test.only("Radio test",async({page})=>{
+test("Radio test",async({page})=>{
 
-await page.goto("https://testautomationpractice.blogspot.com/")
+await page.goto("https://testautomationpractice.blogspot.com/");
 
 const inputname:Locator = page.locator("#name");
 await inputname.fill("joyson dsouza");
@@ -49,5 +50,61 @@ await expect(radiomalecheck).toBeChecked();
 
 expect(await radiomalecheck.isChecked()).toBe(true);
 
+
+})
+
+test.only("checkbox test",async({page})=>{
+
+await page.goto("https://testautomationpractice.blogspot.com/");
+
+   const inputname:Locator = page.locator("#name");
+   await inputname.fill("joyson dsouza");
+   const radiomalecheck:Locator = page.locator("#male");
+   await radiomalecheck.check();
+   // 1. Select specific checkbox (Sunday) using getByLabel and assert
+   // await page.getByLabel("Sunday").check();
+
+   // 2. Select all checkboxes and assert each is checked
+   let days:string[] = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+
+   const checkboxes:Locator[] = days.map(index => page.getByLabel(index));
+
+   for(const checkbox of checkboxes)
+   {
+      await checkbox.check();
+      await expect(checkbox).toBeChecked();
+   }
+  
+   await page.waitForTimeout(3000);
+
+   // 3. Uncheck last 3 checkboxes and assert
+   for(const checkbox of checkboxes.slice(-3))
+   {
+      await checkbox.uncheck();
+      await expect(checkbox).not.toBeChecked();
+   }
+  
+   await page.waitForTimeout(3000);
+
+   //  4. Toggle checkboxes: 
+   for(const checkbox of checkboxes)
+   {
+      if(await checkbox.isChecked())
+      {
+            await checkbox.uncheck();
+            await expect(checkbox).not.toBeChecked();
+      }
+      else
+      {
+            await checkbox.check();
+            await expect(checkbox).toBeChecked();
+      }
+
+   }
+   await page.waitForTimeout(3000);
+
+   // Uncheck all
+   
+   
 
 })
