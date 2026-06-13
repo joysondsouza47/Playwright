@@ -103,8 +103,41 @@ await page.goto("https://testautomationpractice.blogspot.com/");
    }
    await page.waitForTimeout(3000);
 
-   // Uncheck all
+   // 5.  Uncheck all
    
-   
+   for(const checkbox of checkboxes)
 
+      if(await checkbox.isChecked())
+      {
+         await checkbox.uncheck();
+      }
+
+   await page.waitForTimeout(3000);  
+
+   // 6. Randomely select check boxes - Select checkboxes by index (0,2,4,6) and assert
+      const indexes:number[] = [0,2,4,6];
+
+      for(const i of indexes)
+      {
+            await checkboxes[i].check();
+            await expect(checkboxes[i]).toBeChecked();
+      }
+   await page.waitForTimeout(3000);   
+
+   // 7. select checkbox by label name 
+
+   const weekname:string = 'Friday'
+
+   for(const label of days)
+   {
+      if(weekname.toLowerCase()===label.toLowerCase())
+      {
+          const checkboxlabel = page.getByLabel(label);
+          await checkboxlabel.check();
+          await expect(checkboxlabel).toBeChecked();
+         
+      }
+   }
+
+   await page.waitForTimeout(3000);  
 })
