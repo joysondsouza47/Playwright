@@ -64,13 +64,13 @@ test.only('Student Registration Form - Radio and Checkbox', async ({ page }) => 
    for (let i = 0; i < count; i++) {
     await hobbies.nth(i).check();
   }
-  await page.waitForTimeout(3000);
+    // await page.waitForTimeout(3000);
 
     // Uncheck all hobbies using a loop. 
     for (let i = 0; i < count; i++) {
       await hobbies.nth(i).uncheck();
     }
-    await page.waitForTimeout(3000);
+    // await page.waitForTimeout(3000);
 
     
  
@@ -78,7 +78,7 @@ test.only('Student Registration Form - Radio and Checkbox', async ({ page }) => 
  for (let i = count - 2; i < count; i++) {
   await hobbies.nth(i).check();
 }
-await page.waitForTimeout(3000);
+    // await page.waitForTimeout(3000);
 
 
    
@@ -86,7 +86,7 @@ await page.waitForTimeout(3000);
   for (let i = 0; i < 3; i++) {
     await hobbies.nth(i).check();
   }
-  await page.waitForTimeout(3000);
+    // await page.waitForTimeout(3000);
 
 
    // Check random hobbies (i=1 and i=5)
@@ -95,7 +95,7 @@ await page.waitForTimeout(3000);
       await hobbies.nth(i).check({ force: true });
     }
   }
-  await page.waitForTimeout(3000);
+     // await page.waitForTimeout(3000);
 
 
   // Check hobbies based on values using a switch-case statement
@@ -116,6 +116,6 @@ await page.waitForTimeout(3000);
     default:
       console.log('Hobby not found');
   }
-  await page.waitForTimeout(3000);
+     // await page.waitForTimeout(3000);
 
 });
