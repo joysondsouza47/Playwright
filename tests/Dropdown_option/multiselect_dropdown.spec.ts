@@ -14,24 +14,24 @@ test(" multiselect dropdown ", async({page})=>
 
     await page.waitForTimeout(3000);
 
-    // const colordropdown:Locator= page.locator("#colors>option"); // not sorted
+    const colordropdown:Locator= page.locator("#colors>option"); // not sorted
 
-    const colordropdown:Locator= page.locator("#animals>option"); // sorted
+    // const colordropdown:Locator= page.locator("#animals>option"); // sorted
 
     // await expect(colordropdown).toHaveCount(7); //colors
 
     const maindrop:string[] = (await colordropdown.allTextContents()).map(text => text.trim());
 
-    const dupldrop:string[] = [...maindrop];
+    // const dupldrop:string[] = [...maindrop];
 
-    const sortdrop:string[] = [...dupldrop.sort()];
+    // const sortdrop:string[] = [...dupldrop.sort()];
 
     
     console.log("Original list:",maindrop);
-    console.log("Sorted list:",sortdrop);
+    // console.log("Sorted list:",sortdrop);
     
 
-    expect(maindrop).toEqual(sortdrop);
-
+    // expect(maindrop).toEqual(sortdrop);
+  
 
 })

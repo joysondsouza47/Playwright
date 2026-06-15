@@ -41,9 +41,8 @@ test("singledropdown", async({page})=>
 
     for(const word of newarray)
     {
-        await page.locator("#country").selectOption(word)
-        await page.waitForTimeout(2000)
+        await page.locator("#country").selectOption(word);
+        await page.waitForTimeout(2000);
     }
-
 
 })
