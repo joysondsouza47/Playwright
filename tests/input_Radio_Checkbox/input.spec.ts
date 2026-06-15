@@ -67,7 +67,7 @@ await page.goto("https://testautomationpractice.blogspot.com/");
    // 2. Select all checkboxes and assert each is checked
    let days:string[] = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
 
-   const checkboxes:Locator[] = days.map(index => page.getByLabel(index));
+   const checkboxes:Locator[] = days.map(index => page.getByLabel(index))
 
    for(const checkbox of checkboxes)
    {
