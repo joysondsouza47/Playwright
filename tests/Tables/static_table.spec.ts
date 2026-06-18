@@ -23,10 +23,7 @@ test("Table title",async({page})=>{
 
     console.log(await columns.allInnerTexts());
 
-
-
-
-
+    
 
 
 
