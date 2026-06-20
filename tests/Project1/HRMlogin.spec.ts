@@ -35,7 +35,7 @@ test("Login test", async({page})=>{
     await addmiddlename.fill("");
     await addlastname.fill("Dsouza");
 
-    await page.waitForTimeout(5000);
+    await page.waitForTimeout(2000);
 
 
 })
