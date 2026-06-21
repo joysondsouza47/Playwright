@@ -30,6 +30,8 @@ test("Project1", async({page})=>{
   
     let checkdays:string[] = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 
+    const checkboxes:Locator[] = checkdays.map(index => page.getByLabel(index));
+
     // check any specific checkbox
 
     // await page.getByLabel("Sunday").check();
@@ -37,10 +39,8 @@ test("Project1", async({page})=>{
 
     // check all the check box
 
-    for(const text of checkdays)
+    for(const checkbox of checkboxes)
     {
-
-        const checkbox:Locator = page.getByLabel(text);
         await checkbox.check();
         await expect(checkbox).toBeChecked();
     }
@@ -49,10 +49,9 @@ test("Project1", async({page})=>{
 
     // uncheck last 3 checkboxes
 
-    for (const text of checkdays.slice(-3))
+    for (const checkbox of checkboxes.slice(-3))
     {
 
-        const checkbox:Locator = page.getByLabel(text);
         await checkbox.uncheck()
         await expect(checkbox).not.toBeChecked();
     }
@@ -60,9 +59,8 @@ test("Project1", async({page})=>{
     await page.waitForTimeout(2000);
 
     // uncheck all
-    for(const text of checkdays)
+    for(const checkbox of checkboxes)
     {
-        const checkbox:Locator = page.getByLabel(text);
         if(await checkbox.isChecked())
             
         {
@@ -78,9 +76,42 @@ test("Project1", async({page})=>{
     for (const i of index)
     {
 
-        const checkbox:Locator = page.getByLabel(checkdays[i]);
-        await checkbox.check();
-        await expect(checkbox).toBeChecked();
+        await checkboxes[i].check();
+        await expect(checkboxes[i]).toBeChecked();
     }
     await page.waitForTimeout(2000);
+
+
+    const selectoption:Locator = page.locator("#country");
+    const dropdown:Locator = page.locator('select#country option');
+
+    console.log(await dropdown.count()); 
+    console.log(await dropdown.allInnerTexts())
+    const dropdowntext:string[] = (await dropdown.allTextContents()).map(text=> text.trim());
+    console.log(dropdowntext);
+
+    for(const text of dropdowntext){
+
+        await selectoption.selectOption(text);
+        
+
+    }
+
+    
+
+    const selectoption2:Locator = page.locator("#colors");
+    const dropdown2:Locator = page.locator('select#colors option');
+
+    console.log(await dropdown2.count()); 
+    console.log(await dropdown2.allInnerTexts())
+    const dropdowntext2:string[] = (await dropdown2.allTextContents()).map(text=> text.trim());
+    console.log(dropdowntext2);
+
+    for(const text of dropdowntext2){
+
+        await selectoption2.selectOption(text);
+        await page.waitForTimeout(1000);
+
+    }
+
 })
