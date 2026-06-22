@@ -110,7 +110,7 @@ test("Project1", async({page})=>{
     for(const text of dropdowntext2){
 
         await selectoption2.selectOption(text);
-        await page.waitForTimeout(1000);
+        await page.waitForTimeout(2000);
 
     }
 
