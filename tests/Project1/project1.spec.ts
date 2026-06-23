@@ -97,8 +97,6 @@ test("Project1", async({page})=>{
 
     }
 
-    
-
     const selectoption2:Locator = page.locator("#colors");
     const dropdown2:Locator = page.locator('select#colors option');
 
@@ -113,5 +111,7 @@ test("Project1", async({page})=>{
         await page.waitForTimeout(2000);
 
     }
+
+
 
 })
