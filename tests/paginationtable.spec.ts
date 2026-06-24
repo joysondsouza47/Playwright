@@ -24,7 +24,7 @@ while(hasmorepages)
     if(isDisabled?.includes('disabled'))
     {
         hasmorepages=false;
-    }
+    } 
     else{
         await nextButton.click()
     }
