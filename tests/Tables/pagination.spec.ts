@@ -97,12 +97,11 @@ test.only("search word", async({page})=> {
         for(const row of rows)
         {
 
-            let office = [];
             const text:string = await row.innerText();
             if(text.includes('Software Engineer'))
             {
-                const offices:string = await row.locator("td").nth(2).innerText();
-                office.push(offices);
+                const names:string = await row.locator("td").nth(0).innerText();
+                console.log(names)
                 rowcount++;
                 hastext = true;
                 expect(hastext).toBeTruthy();
@@ -112,7 +111,6 @@ test.only("search word", async({page})=> {
                 console.log("No matching records found");
             }
 
-            console.log(office);
 
         }
 

@@ -51,7 +51,6 @@ test("Filter the rows and check the rows count", async ({page})=>{
 
 
 
-
 test.only("Search for specific data in a table", async ({page})=>{
 
     await page.goto("https://datatables.net/examples/basic_init/zero_configuration.html");
