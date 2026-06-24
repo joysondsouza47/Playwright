@@ -82,7 +82,7 @@ test.only("search word", async({page})=> {
     await page.goto("https://datatables.net/examples/basic_init/zero_configuration.html");
 
     const searchbox:Locator = page.locator('#dt-search-0');
-    await searchbox.fill("GavinA");
+    await searchbox.fill("Software Engineer");
 
     await page.waitForTimeout(3000);
 
@@ -97,9 +97,12 @@ test.only("search word", async({page})=> {
         for(const row of rows)
         {
 
+            let office = [];
             const text:string = await row.innerText();
-            if(text.includes('Gavin'))
+            if(text.includes('Software Engineer'))
             {
+                const offices:string = await row.locator("td").nth(2).innerText();
+                office.push(offices);
                 rowcount++;
                 hastext = true;
                 expect(hastext).toBeTruthy();
@@ -108,6 +111,8 @@ test.only("search word", async({page})=> {
             {
                 console.log("No matching records found");
             }
+
+            console.log(office);
 
         }
 
