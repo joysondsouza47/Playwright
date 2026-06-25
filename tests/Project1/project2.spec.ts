@@ -125,6 +125,8 @@ test("project2", async({page})=>{
 
 
    expect(sucessmessage).toBe("Thank you for your purchase today!");
-   console.log("Your flight has been booked successfully!")
+   console.log("Your flight has been booked successfully!");
+
+
 
 })
