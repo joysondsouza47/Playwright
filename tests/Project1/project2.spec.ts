@@ -87,9 +87,9 @@ test("project2", async({page})=>{
     // Enter Passenger Information  
  
 
-    const Name:Locator = page.getByPlaceholder("First Last");
+    const Name:Locator = page.getByRole('textbox',{name: 'Name' , exact : true});
     const Address:Locator = page.getByPlaceholder("123 Main St.");
-    const City:Locator = page.getByPlaceholder("Anytown");
+    const City:Locator = page.getByText("City");
     const State:Locator = page.getByPlaceholder("State");
     const ZipCode:Locator = page.getByPlaceholder("12345");
     const CardType:Locator = page.locator("select.form-inline");
@@ -97,6 +97,7 @@ test("project2", async({page})=>{
     const Month:Locator = page.getByPlaceholder("Month");
     const Year:Locator = page.getByPlaceholder("Year");
     const NameonCard:Locator = page.getByPlaceholder("John Smith");
+    const remembercheckbox:Locator = page.getByRole('checkbox',{name: 'Remember me'})
     const PurchaseFlight:Locator = page.locator("input[type='submit']");
 
     await Name.fill("John");
@@ -109,6 +110,8 @@ test("project2", async({page})=>{
     await Month.fill("07");
     await Year.fill("2026");
     await NameonCard.fill("John Canedy");
+    await remembercheckbox.check();
+    expect(remembercheckbox).toBeChecked();
     await PurchaseFlight.click();
 
 
