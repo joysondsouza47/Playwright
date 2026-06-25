@@ -24,11 +24,8 @@ test("project1", async({page})=>{
                         await checkbox.check();
                         expect(checkbox).toBeChecked();
                         await page.waitForTimeout(500);
-  
                      }
-
-                  
-                   
+   
                         
            }
 
