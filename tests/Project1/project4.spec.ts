@@ -110,7 +110,6 @@ test("project 4", async({page})=>{
 
             expect(product.includes(finalproduct));
             expect(productprice.includes(orderfinalamount))
-            await page.waitForTimeout(5000);
 
             await page.getByRole('button', { name: 'Place order' }).click();
 
