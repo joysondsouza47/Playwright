@@ -27,6 +27,39 @@ async function selectDate(page: Page, targetYear: string, targetMonth: string, t
 
 }
 
+async function traveldate(page:Page, month:string, year:string, date:string){
+
+while(true)
+{
+    
+    const travelmonth = await page.locator(".ui-datepicker-month").innerText();
+    const travelyear = await page.locator(".ui-datepicker-year").innerText();
+
+    if(month===travelmonth && year===travelyear)
+        {
+           break;
+        }
+        else
+        {
+           await page.locator("a.ui-datepicker-next.ui-corner-all.ng-tns-c69-9.ng-star-inserted").click();
+        }
+}
+
+const daterow = await page.locator(".ui-datepicker-calendar tbody tr td").all();
+
+for(const row of daterow)
+
+    {
+        const datetext = await row.innerText();
+        if(date===datetext)
+        {
+            await row.click();
+            break;
+        }
+
+    }
+
+}
 
 
 test("project 4", async({page})=>{
@@ -120,3 +153,53 @@ test("project 4", async({page})=>{
 
 
 })
+
+
+test.only("project IRCTC", async({page})=>{
+
+
+    await page.goto("https://www.irctc.co.in/nget/train-search");
+
+    await page.locator("//button[text()='English']").click();
+
+    await page.waitForTimeout(2000);
+
+    await page.locator("p-autocomplete[formcontrolname='origin'] input[role='searchbox']").fill("chikkamagaluru");
+
+    await page.waitForTimeout(500);
+
+    await page.locator("p-autocomplete[formcontrolname='origin'] li:nth-child(2)").click();
+
+    await page.waitForTimeout(2000); 
+
+    await page.locator("p-autocomplete[formcontrolname='destination'] input[role='searchbox']").fill("WHITEFIELD");
+
+    await page.waitForTimeout(500);
+
+    await page.locator("p-autocomplete[formcontrolname='destination'] li:first-child").click();
+
+    await page.waitForTimeout(2000); 
+
+    let Tmonth = "";
+    let Tyear = "";
+    let Tdate = "";
+
+    await page.locator(".ui-calendar").click();
+    await traveldate(page, Tmonth="July" , Tyear="2026" , Tdate="17");
+
+    const searchtrains =  page.locator("button:has-text('Search Trains')");
+
+    await searchtrains.click();
+
+    const titleofpage = await page.title();
+    console.log(titleofpage);
+    expect(titleofpage).toBe("IRCTC – Official Indian Railway Catering & Tourism Corporation Portal");
+
+    await page.waitForTimeout(2000); 
+
+})
+
+
+
+
+
