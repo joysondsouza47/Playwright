@@ -11,7 +11,7 @@ test("handle popups",async({browser})=>{
     //page.waitForEvent('popup');
     //await page.locator("#PopUp").click();
 
-    await Promise.all([page.waitForEvent('popup'),page.locator("#PopUp").click(),page.locator("#PopUp").click()])
+    await Promise.all([page.waitForEvent('popup'),page.locator("#PopUp").click()])
     await page.waitForTimeout(3000);
     const allPopupWindows=context.pages(); // Returns array of pages
     console.log("Number of pages/windows:",allPopupWindows.length); //3

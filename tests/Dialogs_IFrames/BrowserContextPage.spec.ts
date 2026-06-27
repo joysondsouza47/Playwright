@@ -69,14 +69,18 @@ test.only("browser context page3", async({})=>{
     expect(title).toBe("Automation Testing Practice")
     await page.waitForTimeout(1000);
 
-    await Promise.all([page.waitForEvent('popup'),page.locator("#PopUp").click(),page.locator("#PopUp").click()])
+    await Promise.all([page.waitForEvent('popup'),page.locator("#PopUp").click()])  // creating a child page
+    await Promise.all([context.waitForEvent('page'),page.getByRole('button', { name: 'New Tab' }).click()])  //creating a child page
+
+
     await page.waitForTimeout(3000);
     const pages = context.pages();
     console.log("number of pages:", pages.length);
     
-    console.log("URL of the main page:", pages[0].url());
-    console.log("URL of the child page:", pages[1].url());
-    console.log("URL of the child page:", pages[2].url());
+    for(const i in pages)
+    {
+        console.log("URL of the pages:", pages[i].url());
+    }
 
 
     for(const p1 of pages)
