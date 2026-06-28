@@ -97,5 +97,5 @@ test.only("browser context page3", async({})=>{
 
     }
         await pages[1].close();
-    await page.waitForTimeout(500);
+    await page.waitForTimeout(1000);
 })
