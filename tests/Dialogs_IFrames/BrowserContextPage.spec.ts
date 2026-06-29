@@ -54,7 +54,7 @@ test("browser context page2", async({})=>{
 
 })
 
-test.only("browser context page3", async({})=>{
+test("browser context page3", async({})=>{
 
 
     const browser = await chromium.launch();
@@ -98,4 +98,25 @@ test.only("browser context page3", async({})=>{
     }
         await pages[1].close();
     await page.waitForTimeout(1000);
+})
+
+
+
+test.only("browser context auth page", async({})=>{
+
+
+    const browser = await chromium.launch();
+    const context = await browser.newContext({httpCredentials:{username:'admin',password:'admin'}});
+
+    const page = await context.newPage();
+    // await page.goto("https://admin:admin@the-internet.herokuapp.com/basic_auth");
+    await page.goto("https://the-internet.herokuapp.com/basic_auth");
+
+    const loginmessage = page.locator('p:visible');
+    expect(loginmessage).toHaveText("Congratulations! You must have the proper credentials.");
+    console.log(await loginmessage.innerText());
+    
+    await page.waitForTimeout(2000);
+
+ 
 })
