@@ -52,7 +52,7 @@ test.describe("group 1", () => {
 
         await source.dragTo(target);
 
-        await page.waitForTimeout(3000);
+        await page.waitForTimeout(1000);
 
 
     });
