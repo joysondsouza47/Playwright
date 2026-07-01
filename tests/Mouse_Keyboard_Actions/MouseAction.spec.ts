@@ -71,7 +71,7 @@ test.describe("group 1", () => {
 
     await hoverOption.click();
 
-    await page.waitForTimeout(2000);
+    await page.waitForTimeout(5000);
 
 
 })
