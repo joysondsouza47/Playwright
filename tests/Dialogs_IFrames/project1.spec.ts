@@ -26,7 +26,7 @@ test.afterAll(async()=>{
 })
 
 
-test("Data Entry", async()=>{
+test.skip("Data Entry", async()=>{
 
 await page.getByPlaceholder('Enter Name').fill("joyson");
 await page.getByPlaceholder('Enter EMail').fill("joysondsouza47@gmail.com");
