@@ -118,7 +118,7 @@ test("Date picker check 2", async()=>{
     }
 console.log("Date selected successfully");
 await expect(datepicker1).toHaveValue("06/06/2027");
-console.log("hello its done!!!!");
+console.log("hello its done!!!!!");
 
 
 })
